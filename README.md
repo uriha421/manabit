@@ -1,2 +1,2 @@
 # manabit
-This is a e-learning foundation.
+This will be a e-learning foundation.
