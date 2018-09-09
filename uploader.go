@@ -24,5 +24,6 @@ func upload(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := blackfriday.MarkdownCommon([]byte(md))
+  ioutil.WriteFile("templates/text1.html", data, 0644)
 	fmt.Fprintln(w, string(data))
 }
