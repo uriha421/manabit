@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/russross/blackfriday"
+	"gopkg.in/russross/blackfriday.v2"
 	"io/ioutil"
 	"net/http"
 )
@@ -23,7 +23,9 @@ func upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := blackfriday.MarkdownCommon([]byte(md))
-  ioutil.WriteFile("templates/text1.html", data, 0644)
-	fmt.Fprintln(w, string(data))
+	data := blackfriday.Run([]byte(md))
+  text := `<link rel="stylesheet" type="text/css" href="../css/text.css">
+  ` + string(data)
+  ioutil.WriteFile("templates/text1.html", []byte(text), 0644)
+	fmt.Fprintln(w, text)
 }

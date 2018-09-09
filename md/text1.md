@@ -4,3 +4,9 @@
 - a
 - b
 - c
+
+``` go
+func getTrue() bool {
+    return true
+}
+```
