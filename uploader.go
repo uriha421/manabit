@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/russross/blackfriday"
 	"io/ioutil"
 	"net/http"
 )
@@ -17,10 +18,11 @@ func upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data, err := ioutil.ReadAll(file)
+	md, err := ioutil.ReadAll(file)
 	if err != nil {
 		return
 	}
 
+	data := blackfriday.MarkdownCommon([]byte(md))
 	fmt.Fprintln(w, string(data))
 }
